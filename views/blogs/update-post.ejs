@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Post</title>
+</head>
+<body>
+    <%-include('../partials/navbar.ejs')%>
+
+    <h1 style="text-align: center">Update Post</h1>
+
+    <section class="section_container auth_container">
+        <div class="form_container">
+          <form id="updatePostForm" action="/api/v1/posts/<%= post?._id %>?_method=put" method="POST" enctype="multipart/form-data">
+            <div class="form_group">
+              <label for="title">Title</label>
+              <input type="text" id="title" name="title" value="<%= post?.title %>"/>
+            </div>
+            <div class="form_group">
+              <label for="description">Description</label>
+              <textarea name="description" id="description" rows="5" ><%= post?.description %></textarea>
+            </div>
+            <div class="form_group">
+              <label for="image">Blog Image</label>
+              <input type="file" name="file" id="image" >
+            </div>
+            <button type="submit">Update Post</button>
+          </form>
+        </div>
+    </section>
+
+    <%-include('../partials/footer.ejs')%>
+</body>
+</html>

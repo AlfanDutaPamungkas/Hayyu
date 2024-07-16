@@ -1,0 +1,20 @@
+<script src="https://kit.fontawesome.com/0be4f8ed02.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/css/style.css" />
+<nav>
+    <div class="nav_logo">Hayyu</div>
+    <ul class="nav_links">
+      <li class="link"><a href="/">Home</a></li>
+      <li class="link"><a href="/api/v1/posts">Blog</a></li>
+      <li class="link"><a href="/api/v1/contact">Contact Us</a></li>
+      <% if (isLoggedIn) { %>
+          <% if (isAdmin) { %>
+            <li class="link"><a href="/api/v1/hotels/add-hotel">Add Hotel</a></li>
+            <li class="link"><a href="/api/v1/posts/add-blog">Add Blog</a></li>
+          <% } %>
+          <li class="link"><a href="/api/v1/users/logout">Logout</a></li>
+      <% } else { %>
+        <li class="link"><a href="/api/v1/users/login">Login</a></li>
+        <li class="link"><a href="/api/v1/users/register">Register</a></li>
+      <% } %>
+    </ul>
+</nav>

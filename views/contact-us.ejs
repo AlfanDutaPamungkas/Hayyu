@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Hayyu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/public/assets/css/style.css">
+</head>
+<body>
+    <%-include('partials/navbar.ejs')%>
+    <h1 style="text-align: center;">Contact Us</h1>
+    <p style="text-align: center;">Any question or remarks? Just write us a message!</p>
+    </header>
+
+    <section class="section_container contact_container">
+        <div class="contact_info">
+            <h2>Contact Information</h2>
+            <p>Say something to start a live chat!</p>
+
+            <% if (messages.length > 0) { %>
+                <% messages.forEach(message => { %>
+                    <p class="flash-success"><%= message %></p>
+                <% }); %>
+            <% } %>
+
+            <ul>
+                <li><i class="fas fa-phone"></i> +62 123 4567 89</li>
+                <li><i class="fas fa-envelope"></i> demo@gmail.com</li>
+                <li><i class="fas fa-map-marker-alt"></i> Equity Tower, Sudirman SCBD</li>
+            </ul>
+            <div class="contact_socials">
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-discord"></i></a>
+            </div>
+        </div>
+        <div class="contact_form_container">
+            <form id="contactForm" method="post" action="/api/v1/contact">
+                <div class="form_group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form_group">
+                    <label>Select Subject?</label>
+                    <div class="radio_group">
+                        <label><input type="radio" name="subject" value="General Inquiry" checked> General Inquiry</label>
+                        <label><input type="radio" name="subject" value="Booking"> Booking</label>
+                        <label><input type="radio" name="subject" value="Support"> Support</label>
+                        <label><input type="radio" name="subject" value="Feedback"> Feedback</label>
+                    </div>
+                </div>
+                <div class="form_group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <%-include('partials/footer.ejs')%>
+</body>
+</html>

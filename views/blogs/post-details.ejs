@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Details</title>
+</head>
+<body>
+    <%-include('../partials/navbar.ejs')%>
+
+    <main class="post-details">
+        <article class="post-details-content">
+          <img src="<%=post?.image%>" alt="Post Image" class="post-details-image" />
+
+          <% if (isAdmin) { %>
+            <div class="post-details-action">
+              
+              <a href="/api/v1/posts/update-blog-form/<%= post?._id %>">
+                <i class="fas fa-edit"></i>
+              </a>
+              <form action="/api/v1/posts/<%= post?._id %>?_method=delete" method="post">
+                <button>
+                  <i class="fas fa-trash-alt"></i>
+                </button>
+              </form>
+            
+            </div>
+          <% } %>
+
+          <h1 class="post-title"><%=post?.title%></h1>
+          <p class="post-body"><%-post?.description%></p>
+        </article>
+    </main>
+    
+    <%-include('../partials/footer.ejs')%>
+</body>
+</html>

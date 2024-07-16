@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Hayyu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <%-include('../partials/navbar.ejs')%>
+
+    <h1 style="text-align: center;">Register</h1>
+    <p style="text-align: center;">Create an account to start your journey with us.</p>
+    </header>
+
+    <section class="section_container auth_container">
+        <div class="form_container">
+            <form id="registerForm" action="/api/v1/users/register" method="POST">
+                <div class="form_group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstname" name="firstname" required>
+                </div>
+                <div class="form_group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastname" name="lastname">
+                </div>
+                <div class="form_group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form_group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit">Register</button>
+                <p class="form_link">Already have an account? <a href="login.html">Login here</a></p>
+            </form>
+        </div>
+    </section>
+
+    <%-include('../partials/footer.ejs')%>
+</body>
+</html>

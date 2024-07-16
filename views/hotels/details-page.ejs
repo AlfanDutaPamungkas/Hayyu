@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Plaza Hotel - Hayyu</title>
+    <link rel="stylesheet" href="/public/css/style.css" />
+  </head>
+  <body>
+
+    <%-include('../partials/navbar.ejs')%>
+
+    <header class="hotel_header">
+      <div class="hotel_image_container">
+        <img src="<%= hotel?.image %>" alt="<%= hotel?.name %>" class="main_image" />
+      </div>
+    </header>
+
+    <section class="hotel_details section_container">
+
+      <% if (isAdmin) { %>
+        <div class="post-details-action">
+          
+          <a href="/api/v1/hotels/update-hotel-form/<%= hotel?._id %>">
+            <i class="fas fa-edit"></i>
+          </a>
+          <form action="/api/v1/hotels/<%= hotel?._id %>?_method=delete" method="post">
+            <button>
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </form>
+        
+        </div>
+      <% } %>
+
+      <h2><%= hotel?.name %></h2>
+      <p><%= hotel?.address %></p>
+      <div class="hotel_price">
+        <h3>Rp <%= hotel?.price.toLocaleString() %> per night</h3>
+      </div>
+      <div class="hotel_description">
+        <p>
+          <%= hotel?.description %>
+        </p>
+      </div>
+
+      <div class="details_with_form">
+        <div class="hotel_amenities">
+          <h3>Amenities</h3>
+          <ul>
+            <li><i class="fas fa-wifi"></i>Free Wi-Fi</li>
+            <li><i class="fas fa-swimmer"></i>Swimming Pool</li>
+            <li><i class="fas fa-dumbbell"></i>Fitness Center</li>
+            <li><i class="fas fa-parking"></i>Parking</li>
+            <li><i class="fas fa-spa"></i>Spa and Wellness Center</li>
+            <li><i class="fas fa-utensils"></i>On-site Restaurant</li>
+            <li><i class="fas fa-coffee"></i>Complimentary Breakfast</li>
+            <li><i class="fas fa-shuttle-van"></i>Airport Shuttle</li>
+            <li><i class="fas fa-tv"></i>Cable TV</li>
+            <li><i class="fas fa-concierge-bell"></i>Room Service</li>
+            <li><i class="fas fa-cocktail"></i>Bar/Lounge</li>
+            <li><i class="fas fa-soap"></i>Laundry Service</li>
+          </ul>
+        </div>
+
+        <div class="crud_form">
+          <h3>Manage Booking</h3>
+          <form id="bookingForm" action="/api/v1/booking/<%= hotel?._id %>" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="checkin">Check-in Date:</label>
+            <input type="date" id="checkin" name="checkin" required>
+
+            <label for="checkout">Check-out Date:</label>
+            <input type="date" id="checkout" name="checkout" required>
+
+            <% if (isLoggedIn) { %>
+              <button type="submit">Lanjutkan Booking</button>
+            <% } else { %>
+                <button disabled type="submit">Lanjutkan Booking</button>
+            <% } %>
+            
+          </form>
+        </div>
+      </div>
+
+      <% if (isLoggedIn) { %>
+        <div class="hotel_transactions">
+          <h3>Recent Transactions</h3>
+          <ul>
+            <% bookingData.forEach(data => { %>
+              <li>
+                <span class="transaction_date"><%= data?.createdAt.toLocaleDateString() %></span>
+                <span class="transaction_detail">Booking ID: <%= data?.confirmationNumber %> - <%= data?.name %> - <%= data?.nights %> nights</span>
+                <span class="transaction_amount">Rp <%= data?.cost.toLocaleString() %></span>
+              </li>
+            <% }) %>
+          </ul>
+        </div>
+      <% } %>
+
+    </section>
+
+    <%-include('../partials/footer.ejs')%>
+  
+    <script>
+      const checkinInput = document.getElementById('checkin');
+      const checkoutInput = document.getElementById('checkout');
+
+      checkinInput.addEventListener('change', function() {
+          checkoutInput.min = checkinInput.value;
+          checkoutInput.value = checkinInput.value;
+      });
+  </script>
+  </body>
+</html>

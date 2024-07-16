@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Booking Tiket Hotel</title>
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        flatpickr("#checkin", {
+          altInput: true,
+          altFormat: "F j, Y",
+          dateFormat: "Y-m-d",
+        });
+
+        const options = {
+          strings: [
+            "Mencari hotel...",
+            "Menemukan penginapan terbaik...",
+            "Membandingkan harga...",
+          ],
+          typeSpeed: 50,
+          backSpeed: 25,
+          backDelay: 1000,
+          loop: true,
+        };
+
+        const typed = new Typed("#animated-text", options);
+
+        const sections = document.querySelectorAll(".section_container");
+
+        const observer = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.1,
+          }
+        );
+
+        sections.forEach((section) => {
+          section.classList.add("fade-in");
+          observer.observe(section);
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <%-include('partials/navbar.ejs')%>
+    <header class="section_container header_container">
+      <div class="header_image_container">
+        <div class="header_content">
+          <h1>Just Enjoy Your Holiday!</h1>
+          <p>
+            Hey, you guys know why Gen Z loves "healing" so much these days? Especially when they make stories about going to Bali with captions like, "finally getting away from work stress." Well, I've got a super cool solution for you all. Guaranteed, you won't regret it!
+          </p>
+        </div>
+        <div class="booking_container">
+          <div id="animated-text"></div>
+          <form id="bookingForm">
+            <button type="submit" class="btn">
+              <i class="ri-search-line"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </header>
+    <section class="section_container popular_container">
+      <h2 class="section_header">Hotel Paling Populer</h2>
+      <div class="popular_grid">
+
+        <% hotels?.forEach(hotel => { %>
+          <div class="popular_card">
+            <a href="/api/v1/hotels/<%= hotel?._id %>">
+              <img src="<%= hotel?.image %>" alt="popular hotel" />
+            </a>
+            <div class="popular_content">
+              <div class="popular_card_header">
+                <h4><%= hotel?.name %></h4>
+                <h4>Rp <%= hotel?.price.toLocaleString() %></h4>
+              </div>
+              <p><%= hotel?.address %></p>
+            </div>
+          </div>
+        <% }) %>
+        </div>
+      </div>
+    </section>
+
+    <section class="client">
+      <div class="section_container client_container">
+        <h2 class="section_header">Lihat cerita pengalaman mereka.</h2>
+        <div class="client_grid">
+          <div class="client_card">
+            <img src="/images/client-1.jpg" alt="client" />
+            <p>Hayyu menjadi pilihan saya dan istri ketika bulan madu.</p>
+          </div>
+          <div class="client_card">
+            <img src="/images/client-2.jpg" alt="client" />
+            <p>Layanan proses booking-nya cepat dan aman.</p>
+          </div>
+          <div class="client_card">
+            <img src="/images/client-3.jpg" alt="client" />
+            <p>
+              Hayyu Memiliki kualitas pada pelayanannya, saya sangat
+              merekomendasikan semua menggunakan ini.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section_container">
+      <div class="reward_container">
+        <p>20+ Kode Diskon!!</p>
+        <h4>
+          Tunggu apalagi Hayyu sepenuh hati memberikan kepada customer setia.
+        </h4>
+        <button class="reward_btn">Raup Hadiahmu!</button>
+      </div>
+    </section>
+
+    <%-include('partials/footer.ejs')%>
+  </body>
+</html>

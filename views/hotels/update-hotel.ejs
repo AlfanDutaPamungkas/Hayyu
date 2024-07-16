@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Hotel - Hayyu</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+</head>
+<body>
+    <%-include('../partials/navbar.ejs')%>
+
+    <h1 style="text-align: center">Update Hotel</h1>
+
+    <section class="section_container auth_container">
+        <div class="form_container">
+          <form id="addHotelForm" action="/api/v1/hotels/<%= hotel?._id %>?_method=put" method="POST" enctype="multipart/form-data">
+            <div class="form_group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" value="<%= hotel?.name %>"/>
+            </div>
+            <div class="form_group">
+              <label for="address">Address</label>
+              <input type="text" id="address" name="address" value="<%= hotel?.address %>"/>
+            </div>
+            <div class="form_group">
+              <label for="price">Price</label>
+              <input type="number" id="price" name="price" value="<%= hotel?.price %>"/>
+            </div>
+            <div class="form_group">
+              <label for="description">Description</label>
+              <textarea name="description" id="description" rows="5"><%= hotel?.description %></textarea>
+            </div>
+            <div class="form_group">
+              <label for="image">Hotel Image</label>
+              <input type="file" name="file" id="image">
+            </div>
+            <button type="submit">Update Hotel</button>
+          </form>
+        </div>
+      </section>
+
+    <%-include('../partials/footer.ejs')%>
+</body>
+</html>

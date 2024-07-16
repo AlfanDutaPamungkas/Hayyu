@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <link rel="stylesheet" href="/public/css/style.css" />
+</head>
+<body>
+    <%-include('../partials/navbar.ejs')%>
+
+    <div class="payment_container">
+        <h1 style="text-align: center;">Payment</h1>
+        <p>Name: <%= bookingData.name %></p>
+        <p>Check-in: <%= bookingData.checkin.toDateString() %></p>
+        <p>Check-out: <%= bookingData.checkout.toDateString() %></p>
+        <p>Biaya: Rp <%= bookingData.cost.toLocaleString() %></p>
+        
+        <div id="payment_form">
+            <form action="/api/v1/booking/confirm" method="post">
+                <input type="hidden" name="name" value="<%= bookingData.name %>">
+                <input type="hidden" name="checkin" value="<%= bookingData.checkin.toISOString() %>">
+                <input type="hidden" name="checkout" value="<%= bookingData.checkout.toISOString() %>">
+                <input type="hidden" name="cost" value="<%= bookingData.cost %>">
+                <input type="hidden" name="hotel" value="<%= bookingData.hotel %>">
+                <input type="hidden" name="nights" value="<%= bookingData.nights %>">
+                <input type="hidden" name="hotelName" value="<%= bookingData.hotelName %>">
+                <button type="submit">Confirm Payment</button>
+            </form>
+            <a href="/"><button>Cancel Payment</button></a>
+        </div>
+    </div>
+
+
+    <%-include('../partials/footer.ejs')%>
+</body>
+</html>
