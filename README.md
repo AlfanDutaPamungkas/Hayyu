@@ -55,7 +55,7 @@ Hayyu is an online hotel booking web application built with Express.js.
 5. Start the server:
 
     ```bash
-    npm start
+    node server.js
     ```
 
 ## Usage
