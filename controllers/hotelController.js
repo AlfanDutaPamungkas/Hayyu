@@ -83,7 +83,7 @@ const deleteHotelCtrl = async(req, res, next) => {
         const imageID = image.split('/').slice(-2).join('/').split('.')[0];
         await cloudinary.uploader.destroy(imageID);
 
-        await Hotel.findOneAndDelete(req.params.id);
+        await Hotel.findByIdAndDelete(req.params.id);
 
         res.redirect("/");
     } catch (error) {
