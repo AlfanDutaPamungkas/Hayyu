@@ -41,7 +41,7 @@ Hayyu is an online hotel booking web application built with Express.js.
 
     ```env
     PORT=3000
-    DB_URLI=your_mongodb_uri
+    DB_URL=your_mongodb_uri
     JWT_KEY=your_jwt_key
     CLOUDINARY_NAME=your_cloudinary_name
     CLOUDINARY_API_KEY=your_cloudinary_api_key
