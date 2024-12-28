@@ -75,9 +75,6 @@ Contributions are welcome! Please fork the repository and create a pull request 
     <tr>
       <td align="center"><a href="https://github.com/AlfanDutaPamungkas"><img src="https://avatars.githubusercontent.com/u/128448534?v=4?s=100" width="100px;" alt=""/><br /><sub><b>AlfanDutaPamungkas</b></sub></a></td>
       <td align="center"><a href="https://github.com/sulthan18"><img src="https://avatars.githubusercontent.com/u/126325594?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Sulthan Rafi Hendriansyah</b></sub></a></td>
-      <td align="center"><a href="https://github.com/Fariz214"><img src="https://avatars.githubusercontent.com/u/130908462?v=4" width="100px;" alt=""/><br /><sub><b>Muhammad Fariz Satria Maulana</b></sub></a></td>
-      <td align="center"><a href="https://github.com/shaqil23"><img src="https://avatars.githubusercontent.com/u/129819903?v=4" width="100px;" alt=""/><br /><sub><b>Shakil Mardhika Azhar</b></sub></a></td>
-      <td align="center"><a href="https://github.com/Dryannn"><img src="https://avatars.githubusercontent.com/u/95418088?v=4" width="100px;" alt=""/><br /><sub><b>Adrian Fathurahman</b></sub></a></td>
     </tr>
   </tbody>
 </table>
